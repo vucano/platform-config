@@ -1,0 +1,61 @@
+server:
+  port: ${PORT:0}
+
+logging:
+  file:
+    name: platform-security.log
+  level.org.springframework.security: DEBUG
+  level.org.springframework.security.oauth2: DEBUG
+  level.org.springframework.web: DEBUG
+
+spring:
+  jpa:
+    hibernate.ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp.use_jdbc_metadata_defaults: false
+        default_schema: platform-security
+    generate-ddl: false
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://famisoftdb.postgres.database.azure.com:5432/msa-famisoft-prueba?currentSchema=platform-security
+    username: usrdbown@famisoftdb
+    password: fjb$%lc98Fuoiew%p
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
+      pool-name: platform-security
+      
+# Resolución del servidor de Eureka
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${spring.aplication.instance_id:${random.value}}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/platform-eureka/eureka
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+#ribbon timeout
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+  
+ldap:
+  url: ldap://192.168.6.55:389
+  dn: CN=Faber Andrey Murillo Cobos,OU=OU_5201 Desarrollo,OU=OU_5200 Direccion de Sistemas,OU=OU_5000 Gerencia Administrativa,OU=OU_Famisanar,DC=FAMISANAR,DC=RED
+  password: Programa2021
+  search-base: DC=FAMISANAR,DC=RED
+  filter: (sAMAccountName=%s)
+signingkey: rU{kvwBQnX}wxuQo}@Z

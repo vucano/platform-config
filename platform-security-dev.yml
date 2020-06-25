@@ -9,6 +9,11 @@ logging:
   level.org.springframework.web: DEBUG
 
 spring:
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9411/
   jpa:
     hibernate.ddl-auto: none
     properties:
@@ -36,8 +41,8 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://platform-eureka:8761/platform-eureka/eureka
-#      defaultZone: http://localhost:8761/platform-eureka/eureka
+#      defaultZone: http://platform-eureka:8761/platform-eureka/eureka
+      defaultZone: http://localhost:8761/platform-eureka/eureka
 
 hystrix:
   command:

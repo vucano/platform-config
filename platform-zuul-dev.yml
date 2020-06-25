@@ -1,0 +1,81 @@
+server:
+  port: 8090
+logging:
+  file:
+    name: platform-zuul.log
+  level.org.springframework.security: DEBUG
+  level.org.springframework.security.oauth2: DEBUG
+  level.org.springframework.web: DEBUG
+
+# Configuración del micro servicio
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9411/
+  application:
+    name: platform-zuul
+  profiles:
+    active: default
+  jpa:
+    hibernate.ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp.use_jdbc_metadata_defaults: false
+    generate-ddl: false
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://famisoftdb.postgres.database.azure.com:5432/msa-famisoft-prueba
+    username: usrdbown@famisoftdb
+    password: fjb$%lc98Fuoiew%p
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
+      pool-name: msa-famisoft-produccion
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 1MB
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/platform-eureka/eureka
+#      defaultZone: http://platform-eureka:8761/platform-eureka/eureka
+
+zuul:
+  routes:
+    msa-administracion:
+      serviceId: msa-administracion
+      path: /msa-administracion/**
+      sensitiveHeaders: Cookie,Set-Cookie
+    platform-security:
+      serviceId: platform-security
+      path: /platform-security/**
+      sensitiveHeaders: Cookie,Set-Cookie
+    msa-covid19:
+      serviceId: msa-covid19
+      path: /msa-covid19/**
+      sensitiveHeaders: Cookie,Set-Cookie
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+#ribbon timeout
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+

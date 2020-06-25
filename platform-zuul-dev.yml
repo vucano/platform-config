@@ -14,10 +14,6 @@ spring:
       probability: 1.0
   zipkin:
     base-url: http://localhost:9411/
-  application:
-    name: platform-zuul
-  profiles:
-    active: default
   jpa:
     hibernate.ddl-auto: none
     properties:

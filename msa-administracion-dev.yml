@@ -1,7 +1,6 @@
 # Configuración general del micro servicio que contiene el nombre del servicio, puerto local, contexto y archivo de log
 server:
     port: ${PORT:0}
-#  port: 8081
 logging:
   file:
     name: msa-administracion.log
@@ -26,7 +25,7 @@ spring:
     hikari:
       minimum-idle: 1
       maximum-pool-size: 2
-      pool-name: msa-administracion
+      pool-name: msa-administracion-dev
   servlet:
     multipart:
       max-file-size: 1MB

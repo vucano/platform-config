@@ -25,7 +25,7 @@ spring:
     hikari:
       minimum-idle: 1
       maximum-pool-size: 2
-      pool-name: msa-famisoft-produccion
+      pool-name: msa-famisoft-dev
   servlet:
     multipart:
       max-file-size: 1MB

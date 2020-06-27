@@ -25,7 +25,7 @@ spring:
     hikari:
       minimum-idle: 1
       maximum-pool-size: 2
-      pool-name: platform-security
+      pool-name: platform-security-dev
       
 # Resolución del servidor de Eureka
 eureka:
@@ -36,8 +36,8 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-#      defaultZone: http://platform-eureka:8761/platform-eureka/eureka
-      defaultZone: http://localhost:8761/platform-eureka/eureka
+      defaultZone: http://platform-eureka:8761/platform-eureka/eureka
+#      defaultZone: http://localhost:8761/platform-eureka/eureka
 
 hystrix:
   command:
@@ -48,7 +48,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 30000
-#ribbon timeout
+
 ribbon:
   ReadTimeout: 30000
   ConnectTimeout: 30000

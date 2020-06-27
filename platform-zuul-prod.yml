@@ -24,7 +24,7 @@ spring:
     hikari:
       minimum-idle: 1
       maximum-pool-size: 2
-      pool-name: msa-famisoft-dev
+      pool-name: msa-famisoft-produccion
   servlet:
     multipart:
       max-file-size: 1MB
@@ -38,8 +38,8 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-#      defaultZone: http://localhost:8761/platform-eureka/eureka
-      defaultZone: http://platform-eureka:8761/platform-eureka/eureka
+      defaultZone: http://localhost:8761/platform-eureka/eureka
+#      defaultZone: http://platform-eureka:8761/platform-eureka/eureka
 
 zuul:
   routes:
@@ -65,7 +65,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 30000
-
+#ribbon timeout
 ribbon:
   ReadTimeout: 30000
   ConnectTimeout: 30000

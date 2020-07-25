@@ -46,15 +46,15 @@ zuul:
     msa-administracion:
       serviceId: msa-administracion
       path: /msa-administracion/**
-      sensitiveHeaders: Cookie,Set-Cookie, Authorization
+      sensitiveHeaders: Cookie,Set-Cookie
     platform-security:
       serviceId: platform-security
       path: /platform-security/**
-      sensitiveHeaders: Cookie,Set-Cookie, Authorization
+      sensitiveHeaders: Cookie,Set-Cookie
     msa-covid19:
       serviceId: msa-covid19
       path: /msa-covid19/**
-      sensitiveHeaders: Cookie,Set-Cookie, Authorization
+      sensitiveHeaders: Cookie,Set-Cookie
 
 hystrix:
   command:
